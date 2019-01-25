@@ -11,6 +11,12 @@ module.exports = {
         },
         useBuiltIns: 'usage'
       }
+    ],
+    [
+      '@babel/preset-react',
+      {
+        development: process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
+      }
     ]
   ]
 }

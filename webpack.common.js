@@ -5,9 +5,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   entry: './src/client/index.js',
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin([ 'dist' ]),
     new HtmlWebpackPlugin({
-      title: 'Pearl Forge'
+      title: 'Pearl Forge',
+      templateContent: "<div id='root'/>"
     })
   ],
   output: {
@@ -20,11 +21,11 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [ 'style-loader', 'css-loader' ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
+        use: [ 'file-loader' ]
       }
     ]
   }
