@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npm run build && node build/server.js",
     "test": "jest --coverage",
-    "build": "babel src/server.js --out-dir build && webpack --config webpack.prod.js"
+    "build": "babel src/server.js --out-dir build && babel src/api --out-dir build/api && webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
   "dependencies": {
     "@babel/polyfill": "7.2.5",
     "express": "4.16.4",
+    "google-auth-library": "^3.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-google-login": "^5.0.0",
