@@ -7,6 +7,7 @@ import setProfileAction from './redux/actions/setProfile'
 const responseGoogle = (response) => {
   console.log(response)
 }
+
 const Auth = ({ profile, setToken, setProfile }) => {
   const loginSuccess = (response) => {
     setToken(response.tokenId)
@@ -17,7 +18,6 @@ const Auth = ({ profile, setToken, setProfile }) => {
     })
       .then((res) => res.json())
       .then((val) => {
-        console.log(val)
         if (val.ok) {
           setProfile(val.profile)
         }

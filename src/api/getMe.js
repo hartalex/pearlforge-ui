@@ -16,10 +16,6 @@ export default async function getMe (req, res) {
     const authToken = authValue[1]
 
     var decoded = await verify(authToken)
-    console.log(decoded)
-    // if (decoded.sub !== '112256442265203256517') {
-    //   res.status(403).send({ ok: true, message: 'forbidden' })
-    // }
     res.send({
       ok: true,
       profile: { picture: decoded.picture, given_name: decoded.given_name, family_name: decoded.family_name }
