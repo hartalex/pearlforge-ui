@@ -3,26 +3,58 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login'
 import { connect } from 'react-redux'
 import setTokenAction from './redux/actions/setToken'
 import setProfileAction from './redux/actions/setProfile'
+import setErrorBannerAction from './redux/actions/setErrorBanner'
 
-const responseGoogle = (response) => {
-  console.log(response)
-}
-
-const Auth = ({ profile, setToken, setProfile }) => {
-  const loginSuccess = (response) => {
+const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
+  const loginFail = (response) => {
+    switch (response.error) {
+      case 'immediate_failed':
+        console.error('Immediate Failed')
+        setErrorBanner('Unauthorized')
+        break
+      case 'access_denied':
+        console.error('Immediate Failed')
+        setErrorBanner('Access Denied')
+        break
+      case 'popup_closed_by_user':
+        console.error('Popup close by user')
+        setErrorBanner('Popup Closed Before Authentication')
+        break
+      default:
+        console.error(response.error)
+        setErrorBanner('Login Error')
+        break
+    }
+  }
+  const loginSuccess = async (response) => {
     setToken(response.tokenId)
-    fetch('/me', {
-      headers: {
-        Authorization: `Bearer ${response.tokenId}`
-      }
-    })
-      .then((res) => res.json())
-      .then((val) => {
-        if (val.ok) {
-          setProfile(val.profile)
-        }
+    try {
+      const res = await fetch('/me', {
+        headers: {
+          Authorization: `Bearer ${response.tokenId}`
+        },
+        timeout: 1000
       })
-      .catch((error) => console.error('Error:', error))
+      switch (res.status) {
+        case 200:
+          const body = await res.json()
+          if (body.ok) {
+            setProfile(body.profile)
+          }
+          break
+        case 401:
+          console.error('Unauthorized')
+          setErrorBanner('Unauthorized')
+          break
+        default:
+          console.error('API Error')
+          setErrorBanner('API Error')
+          break
+      }
+    } catch (error) {
+      console.error(error)
+      setErrorBanner('API Error')
+    }
   }
   const logoutSuccess = (response) => {
     // clear the token
@@ -34,15 +66,13 @@ const Auth = ({ profile, setToken, setProfile }) => {
       clientId="466133376395-a2gr81ake50q1nhodotjbiprelvr51u6.apps.googleusercontent.com"
       buttonText="Login"
       onSuccess={loginSuccess}
-      onFailure={responseGoogle}
+      onFailure={loginFail}
       isSignedIn="true"
     />
   )
-  if (profile) {
+  if (loggedIn) {
     retval = (
       <div>
-        <img src={profile.picture} />
-        {profile.given_name} {profile.family_name}
         <GoogleLogout buttonText="Logout" onLogoutSuccess={logoutSuccess} />
       </div>
     )
@@ -52,7 +82,7 @@ const Auth = ({ profile, setToken, setProfile }) => {
 
 const mapStateToProps = (state) => {
   return {
-    profile: state.id.profile
+    loggedIn: state.id.loggedIn
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -62,6 +92,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setProfile: (profile) => {
       dispatch(setProfileAction(profile))
+    },
+    setErrorBanner: (error) => {
+      dispatch(setErrorBannerAction(error))
     }
   }
 }

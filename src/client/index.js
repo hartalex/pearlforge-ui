@@ -7,7 +7,9 @@ import rootReducer from './redux/reducers'
 import Title from './title'
 import SearchBar from './searchBar'
 import ErrorBoundary from './errorBoundary'
+import ErrorBanner from './errorBanner'
 import Auth from './auth'
+import Profile from './profile'
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -16,6 +18,8 @@ const root = () => {
     <div>
       <Provider store={store}>
         <ErrorBoundary>
+          <ErrorBanner />
+          <Profile />
           <Auth />
           <Title text="Title" />
           <SearchBar text="text" />
