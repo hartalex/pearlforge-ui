@@ -1,4 +1,4 @@
-import { SET_ERROR_BANNER } from '../actionTypes'
+import { SET_ERROR_BANNER } from '~/redux/actionTypes'
 export default function setErrorBanner (state = {}, action) {
   switch (action.type) {
     case SET_ERROR_BANNER:

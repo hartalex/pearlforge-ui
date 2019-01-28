@@ -1,4 +1,21 @@
 module.exports = {
+  plugins: [
+    [
+      'babel-plugin-root-import',
+      {
+        paths: [
+          {
+            rootPathPrefix: '~',
+            rootPathSuffix: 'src/client'
+          },
+          {
+            rootPathPrefix: '@',
+            rootPathSuffix: 'src/api'
+          }
+        ]
+      }
+    ]
+  ],
   presets: [
     [
       '@babel/env',

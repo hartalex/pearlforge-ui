@@ -1,9 +1,8 @@
-import { SET_PROFILE } from '../actionTypes'
+import { SET_PROFILE } from '~/redux/actionTypes'
 
 export default function setProfile (profile) {
   return {
     type: SET_PROFILE,
-    profile,
-    loggedIn: typeof profile !== 'undefined'
+    profile
   }
 }

@@ -2,14 +2,14 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import rootReducer from './redux/reducers'
+import rootReducer from '~/redux/reducers'
 
-import Title from './title'
-import SearchBar from './searchBar'
-import ErrorBoundary from './errorBoundary'
-import ErrorBanner from './errorBanner'
-import Auth from './auth'
-import Profile from './profile'
+import Title from '~/components/title'
+import SearchBar from '~/components/searchBar'
+import ErrorBoundary from '~/components/errorBoundary'
+import ErrorBanner from '~/components/errorBanner'
+import Auth from '~/components/auth'
+import Profile from '~/components/profile'
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

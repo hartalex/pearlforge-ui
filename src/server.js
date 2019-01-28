@@ -1,7 +1,7 @@
 import express from 'express'
 import path from 'path'
 import webpack from 'webpack'
-import routes from './api/routes'
+import routes from '@/routes'
 const app = express()
 
 if (process.env.NODE_ENV !== 'production') {

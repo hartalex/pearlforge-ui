@@ -1,9 +1,9 @@
 import React from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
 import { connect } from 'react-redux'
-import setTokenAction from './redux/actions/setToken'
-import setProfileAction from './redux/actions/setProfile'
-import setErrorBannerAction from './redux/actions/setErrorBanner'
+import setTokenAction from '~/redux/actions/setToken'
+import setProfileAction from '~/redux/actions/setProfile'
+import setErrorBannerAction from '~/redux/actions/setErrorBanner'
 
 const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
   const loginFail = (response) => {

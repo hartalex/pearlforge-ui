@@ -1,4 +1,4 @@
-import me from './getMe'
+import me from '@/getMe'
 export default function routes (app) {
   app.get('/me', me)
 }
