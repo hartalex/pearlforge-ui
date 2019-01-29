@@ -11,21 +11,18 @@ async function verify (token) {
   return ticket.getPayload()
 }
 
-export default async function getMe (req, res) {
+export const verifyAuthMiddleWare = async function (req, res, next) {
   try {
     const authValue = req.get('Authorization').split(' ')
     //const authType = authValue[0]
     const authToken = authValue[1]
 
     var decoded = await verify(authToken)
-    // upsert user in database
-
-    res.send({
-      ok: true,
-      profile: { picture: decoded.picture, given_name: decoded.given_name, family_name: decoded.family_name }
-    })
+    req.user_id = decoded.sub
+    req.profile = { picture: decoded.picture, given_name: decoded.given_name, family_name: decoded.family_name }
   } catch (err) {
-    console.error(err)
-    res.status(401).send({ ok: true, message: 'unauthorized' })
+    console.error(`Auth Error ${err}`)
+  } finally {
+    next()
   }
 }

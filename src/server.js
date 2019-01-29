@@ -1,7 +1,7 @@
 import express from 'express'
 import path from 'path'
 import webpack from 'webpack'
-import routes from '@/routes'
+import { authenticatedRoutes, unauthenticatedRoutes } from '@/routes'
 const app = express()
 
 if (process.env.NODE_ENV !== 'production') {
@@ -18,7 +18,8 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   app.use(express.static(path.join(__dirname, '../dist'), { index: 'index.html' }))
 }
-routes(app)
+app.use('/', unauthenticatedRoutes())
+app.use('/', authenticatedRoutes())
 
 // Serve the files on port 3000.
 app.listen(3000, function () {
