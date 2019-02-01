@@ -1,5 +1,5 @@
 import me from '@/me'
-import hello from '@/hello'
+import health from '@/health'
 import { verifyAuthMiddleWare } from '@/verifyAuth'
 import express from 'express'
 
@@ -12,6 +12,6 @@ export const authenticatedRoutes = function () {
 
 export const unauthenticatedRoutes = function () {
   const router = express.Router()
-  router.get('/hello', hello)
+  router.get('/health', health)
   return router
 }
