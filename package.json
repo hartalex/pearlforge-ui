@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.2.5",
-    "express": "4.16.4",
+    "express": "4.17.3",
     "google-auth-library": "^3.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
