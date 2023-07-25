@@ -1,11 +1,12 @@
-import express from 'express';
-import path from 'path';
+import express from 'express'; import path from 'path';
 import webpack from 'webpack';
 import {authenticatedRoutes, unauthenticatedRoutes} from './api/routes';
+import {ENV_PRODUCTION, ROUTES_BASE, ROUTES_API, DIR_DIST, FILE_INDEX, PORT} from './constants'
 const app = express();
 
+
 export const server = env => {
-  if (env !== 'production') {
+  if (env !== ENV_PRODUCTION) {
     // Tell express to use the webpack-dev-middleware and use the webpack.config.js
     // configuration file as a base.
     const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -18,15 +19,15 @@ export const server = env => {
     );
   } else {
     app.use(
-      express.static(path.join(__dirname, '../dist'), {index: 'index.html'}),
+      express.static(path.join(__dirname, '../' + DIR_DIST), {index: FILE_INDEX}),
     );
   }
-  app.use('/', unauthenticatedRoutes());
-  app.use('/api', authenticatedRoutes());
+  app.use(ROUTES_BASE, unauthenticatedRoutes());
+  app.use(ROUTES_API, authenticatedRoutes());
 
-  // Serve the files on port 3000.
-  app.listen(3000, function() {
-    console.log('Example app listening on port 3000!\n');
+  // Start the server
+  app.listen(PORT, function() {
+    console.log(`App listening on port ${PORT}!\n`);
   });
 };
 server(process.env.NODE_ENV);
