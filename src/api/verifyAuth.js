@@ -1,4 +1,5 @@
 import {OAuth2Client} from 'google-auth-library';
+import {HEADER_AUTHORIZATION, MISSING_AUTHORIZATION_HEADER, CHAR_SPACE, HTTP_STATUS_401, MESSAGE_AUTH_ERROR} = '../constants';
 
 const {
   env: {USER_ID, CLIENT_ID},
@@ -6,12 +7,12 @@ const {
 
 export const verifyAuthMiddleWare = async function(req, res, next) {
   try {
-    if (!req.get('Authorization')) {
-      throw new Error('Missing Authorization Header');
+    if (!req.get(HEADER_AUTHORIZATION)) {
+      throw new Error(MISSING_AUTHORIZATION_HEADER);
     }
-    const authValue = req.get('Authorization').split(' ');
-    const authType = authValue[0];
-    const authToken = authValue[1];
+    const authValue = req.get(HEADER_AUTHORIZATION).split(CHAR_SPACE);
+    const authType = authValue[AUTH_TYPE_INDEX];
+    const authToken = authValue[AUTH_TOKEN_INDEX];
 
     var {sub, picture, given_name, family_name, email, locale} = await verify(
       authToken,
@@ -28,11 +29,11 @@ export const verifyAuthMiddleWare = async function(req, res, next) {
       };
       next();
     } else {
-      throw new Error('User is not valid');
+      throw new Error(MESSAGE_USER_IS_NOT_VALID);
     }
   } catch (err) {
-    console.error(`Auth Error ${err}`);
-    res.status(401).send({message: 'unauthorized'});
+    console.error(`${MESSAGE_AUTH_ERROR} ${err}`);
+    res.status(HTTP_STATUS_401).send({message: MESSAGE_UNAUTHORIZED});
   }
 };
 

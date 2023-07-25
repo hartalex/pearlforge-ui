@@ -1,6 +1,8 @@
+import {HTTP_STATUS_OK} = '../constants'
+
 export default async function auth(req, res) {
   const {profile} = req;
-  res.status(200).send({
+  res.status(HTTP_STATUS_OK).send({
     ok: true,
     profile: {
       picture: profile.picture,

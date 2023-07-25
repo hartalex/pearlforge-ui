@@ -1,7 +1,7 @@
 import express from 'express'; import path from 'path';
 import webpack from 'webpack';
 import {authenticatedRoutes, unauthenticatedRoutes} from './api/routes';
-import {ENV_PRODUCTION, ROUTES_BASE, ROUTES_API, DIR_DIST, FILE_INDEX, PORT} from './constants'
+import {ENV_PRODUCTION, ROUTES_BASE, ROUTES_API, DIR_DIST, FILE_INDEX, PORT, MESSAGE_APP_LISTENING_ON_PORT} from './constants'
 const app = express();
 
 
@@ -19,7 +19,7 @@ export const server = env => {
     );
   } else {
     app.use(
-      express.static(path.join(__dirname, '../' + DIR_DIST), {index: FILE_INDEX}),
+      express.static(path.join(__dirname, DIR_DIST), {index: FILE_INDEX}),
     );
   }
   app.use(ROUTES_BASE, unauthenticatedRoutes());
@@ -27,7 +27,7 @@ export const server = env => {
 
   // Start the server
   app.listen(PORT, function() {
-    console.log(`App listening on port ${PORT}!\n`);
+    console.log(`${MESSAGE_APP_LISTENING_ON_PORT} ${PORT}!\n`);
   });
 };
 server(process.env.NODE_ENV);

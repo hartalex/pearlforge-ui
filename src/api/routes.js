@@ -11,7 +11,6 @@ const authenticatedRoutesConfig = {
 };
 
 const unauthenticatedRoutesConfig = {
-  middleware:[],
   routes:[{route: ROUTES_HEALTH, function: health}]
 };
 
@@ -26,10 +25,14 @@ export const unauthenticatedRoutes = function() {
 const createRoutingFromConfig = function(config) {
   const router = express.Router();
   config?.middleware?.forEach(middleware => {
-    router.use(middleware);
+    if (middleware) {
+      router.use(middleware);
+    }
   });
   config?.routes?.forEach(route => {
-    router.get(route.route, route.function);
+    if (route) {
+      router.get(route.route, route.function);
+    }
   });
   return router;
 }
