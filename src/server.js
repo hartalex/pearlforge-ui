@@ -41,6 +41,7 @@ export const server = (env) => {
 
   // Start the server
   app.listen(PORT, () => {
+    // TODO: Use logging library
     console.log(`${MESSAGE_APP_LISTENING_ON_PORT} ${PORT}!\n`);
   });
 };

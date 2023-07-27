@@ -54,6 +54,7 @@ export default async (req, res, next) => {
       throw new Error(MESSAGE_USER_IS_NOT_VALID);
     }
   } catch (err) {
+    // TODO: Use logging library
     console.error(`${MESSAGE_AUTH_ERROR} ${err}`);
     res.status(HTTP_STATUS_UNAUTHORIZED).send({
       message: MESSAGE_UNAUTHORIZED,

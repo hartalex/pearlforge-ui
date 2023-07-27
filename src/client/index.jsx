@@ -16,19 +16,17 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
-const root = () => {
-  return (
-    <div>
-      <Provider store={store}>
-        <ErrorBoundary>
-          <ErrorBanner />
-          <Profile />
-          <Auth />
-          <Title text="Title" />
-          <SearchBar text="text" />
-        </ErrorBoundary>
-      </Provider>
-    </div>
-  );
-};
+const root = () => (
+  <div>
+    <Provider store={store}>
+      <ErrorBoundary>
+        <ErrorBanner />
+        <Profile />
+        <Auth />
+        <Title text="Title" />
+        <SearchBar text="text" />
+      </ErrorBoundary>
+    </Provider>
+  </div>
+);
 render(root(), document.getElementById('root'));

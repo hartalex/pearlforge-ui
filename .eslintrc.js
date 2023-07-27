@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: ['jest'],
   rules: {
-    'operator-linebreak': 'warn' /* this conflicts with prettier */,
-    'implicit-arrow-linebreak': 'warn' /* this conflicts with prettier */,
+    'operator-linebreak': 'off' /* this conflicts with prettier */,
+    'implicit-arrow-linebreak': 'off' /* this conflicts with prettier */,
   },
 };

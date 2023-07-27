@@ -1,8 +1,8 @@
-import { SET_TOKEN } from '../actionTypes';
+import { ACTION_SET_TOKEN } from '../actionTypes';
 
 export default function setToken(token) {
   return {
-    type: SET_TOKEN,
+    type: ACTION_SET_TOKEN,
     token,
   };
 }

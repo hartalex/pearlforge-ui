@@ -1,8 +1,11 @@
-import { SET_PROFILE } from '../actionTypes';
+import { ACTION_SET_PROFILE, ACTION_DEFAULT } from '../actionTypes';
 
-export default function setProfile(state = { loggedIn: false }, action) {
+export default function setProfile(
+  state = { loggedIn: false },
+  action = ACTION_DEFAULT,
+) {
   switch (action.type) {
-    case SET_PROFILE:
+    case ACTION_SET_PROFILE:
       return {
         ...state,
         profile: action.profile,

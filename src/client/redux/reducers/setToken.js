@@ -1,8 +1,8 @@
-import { SET_TOKEN } from '../actionTypes';
+import { ACTION_SET_TOKEN, ACTION_DEFAULT } from '../actionTypes';
 
-export default function setToken(state = {}, action) {
+export default function setToken(state = {}, action = ACTION_DEFAULT) {
   switch (action.type) {
-    case SET_TOKEN:
+    case ACTION_SET_TOKEN:
       return {
         ...state,
         token: action.token,

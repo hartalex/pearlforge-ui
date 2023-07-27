@@ -1,3 +1,4 @@
-export const SET_TOKEN = 'SET_TOKEN';
-export const SET_PROFILE = 'SET_PROFILE';
-export const SET_ERROR_BANNER = 'SET_ERROR_BANNER';
+export const ACTION_SET_TOKEN = 'SET_TOKEN';
+export const ACTION_SET_PROFILE = 'SET_PROFILE';
+export const ACTION_SET_ERROR_BANNER = 'SET_ERROR_BANNER';
+export const ACTION_DEFAULT = 'DEFAULT';

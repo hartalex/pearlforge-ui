@@ -1,8 +1,8 @@
-import { SET_ERROR_BANNER } from '../actionTypes';
+import { ACTION_SET_ERROR_BANNER, ACTION_DEFAULT } from '../actionTypes';
 
-export default function setErrorBanner(state = {}, action) {
+export default function setErrorBanner(state = {}, action = ACTION_DEFAULT) {
   switch (action.type) {
-    case SET_ERROR_BANNER:
+    case ACTION_SET_ERROR_BANNER:
       return {
         ...state,
         error: action.error,
