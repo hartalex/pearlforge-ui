@@ -1,9 +1,6 @@
 import express from 'express';
 import path from 'path';
-import {
-  authenticatedRoutes,
-  unauthenticatedRoutes,
-} from './api/routes';
+import { authenticatedRoutes, unauthenticatedRoutes } from './api/routes';
 import {
   DIR_DIST,
   ENV_PRODUCTION,

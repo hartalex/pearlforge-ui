@@ -38,9 +38,7 @@ export default async (req, res, next) => {
       family_name: familyName,
       email,
       locale,
-    } = await verify(
-      authToken,
-    );
+    } = await verify(authToken);
 
     if (sub === USER_ID) {
       req.user_id = sub;

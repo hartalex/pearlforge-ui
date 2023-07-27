@@ -1,8 +1,8 @@
-import { SET_ERROR_BANNER } from '~/redux/actionTypes'
+import { SET_ERROR_BANNER } from '../actionTypes';
 
-export default function setErrorBanner (error) {
+export default function setErrorBanner(error) {
   return {
     type: SET_ERROR_BANNER,
-    error
-  }
+    error,
+  };
 }

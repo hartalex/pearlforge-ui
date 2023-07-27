@@ -1,12 +1,12 @@
 import React from 'react';
-import {GoogleLogin, GoogleLogout} from 'react-google-login';
-import {connect} from 'react-redux';
-import setTokenAction from '~/redux/actions/setToken';
-import setProfileAction from '~/redux/actions/setProfile';
-import setErrorBannerAction from '~/redux/actions/setErrorBanner';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { connect } from 'react-redux';
+import setTokenAction from '../redux/actions/setToken';
+import setProfileAction from '../redux/actions/setProfile';
+import setErrorBannerAction from '../redux/actions/setErrorBanner';
 
-const Auth = ({loggedIn, setToken, setProfile, setErrorBanner}) => {
-  const loginFail = response => {
+const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
+  const loginFail = (response) => {
     setToken();
     switch (response.error) {
       case 'immediate_failed':
@@ -27,7 +27,7 @@ const Auth = ({loggedIn, setToken, setProfile, setErrorBanner}) => {
         break;
     }
   };
-  const loginSuccess = async response => {
+  const loginSuccess = async (response) => {
     setToken(response.tokenId);
     try {
       const res = await fetch('/api/auth', {
@@ -60,7 +60,7 @@ const Auth = ({loggedIn, setToken, setProfile, setErrorBanner}) => {
       setToken();
     }
   };
-  const logoutSuccess = response => {
+  const logoutSuccess = (response) => {
     // clear the token
     setToken(undefined);
     setProfile(undefined);
@@ -84,26 +84,23 @@ const Auth = ({loggedIn, setToken, setProfile, setErrorBanner}) => {
   return retval;
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     loggedIn: state.id.loggedIn,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setToken: token => {
+    setToken: (token) => {
       dispatch(setTokenAction(token));
     },
-    setProfile: profile => {
+    setProfile: (profile) => {
       dispatch(setProfileAction(profile));
     },
-    setErrorBanner: error => {
+    setErrorBanner: (error) => {
       dispatch(setErrorBannerAction(error));
     },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

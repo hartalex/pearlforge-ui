@@ -1,12 +1,14 @@
-import { SET_PROFILE } from '~/redux/actionTypes'
-export default function setProfile (state = { loggedIn: false }, action) {
+import { SET_PROFILE } from '../actionTypes';
+
+export default function setProfile(state = { loggedIn: false }, action) {
   switch (action.type) {
     case SET_PROFILE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         profile: action.profile,
-        loggedIn: typeof action.profile !== 'undefined'
-      })
+        loggedIn: typeof action.profile !== 'undefined',
+      };
     default:
-      return state
+      return state;
   }
 }

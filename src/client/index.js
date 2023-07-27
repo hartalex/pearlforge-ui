@@ -1,15 +1,15 @@
 import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import rootReducer from '~/redux/reducers';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './redux/reducers';
 
-import Title from '~/components/title';
-import SearchBar from '~/components/searchBar';
-import ErrorBoundary from '~/components/errorBoundary';
-import ErrorBanner from '~/components/errorBanner';
-import Auth from '~/components/auth';
-import Profile from '~/components/profile';
+import Title from './components/title';
+import SearchBar from './components/searchBar';
+import ErrorBoundary from './components/errorBoundary';
+import ErrorBanner from './components/errorBanner';
+import Auth from './components/auth';
+import Profile from './components/profile';
 
 const store = createStore(
   rootReducer,
