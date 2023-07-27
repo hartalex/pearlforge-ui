@@ -1,15 +1,14 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './redux/reducers';
 
-import Title from './components/title';
-import SearchBar from './components/searchBar';
-import ErrorBoundary from './components/errorBoundary';
-import ErrorBanner from './components/errorBanner';
-import Auth from './components/auth';
-import Profile from './components/profile';
+import Title from './components/title.jsx';
+import SearchBar from './components/searchBar.jsx';
+import ErrorBoundary from './components/errorBoundary.jsx';
+import ErrorBanner from './components/errorBanner.jsx';
+import Auth from './components/auth.jsx';
+import Profile from './components/profile.jsx';
 
 const store = createStore(
   rootReducer,
@@ -29,4 +28,5 @@ const root = () => (
     </Provider>
   </div>
 );
-render(root(), document.getElementById('root'));
+
+export default root;

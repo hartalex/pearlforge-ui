@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import setErrorBannerAction from '~/redux/actions/setErrorBanner';
+import setErrorBannerAction from '../redux/actions/setErrorBanner';
 
 const ErrorBanner = ({ error, setErrorBanner, seconds = 10 }) => {
   let retval = <div />;
