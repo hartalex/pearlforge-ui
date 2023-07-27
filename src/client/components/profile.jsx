@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Profile = ({ loggedIn, profile }) => {
@@ -19,6 +20,11 @@ const mapStateToProps = (state) => {
     profile: state.id.profile,
     loggedIn: state.id.loggedIn,
   };
+};
+
+Profile.propTypes = {
+  loggedIn: PropTypes.string,
+  profile: PropTypes.objectOf(PropTypes.string),
 };
 
 export default connect(mapStateToProps)(Profile);
