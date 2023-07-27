@@ -23,8 +23,12 @@ const mapStateToProps = (state) => {
 };
 
 Profile.propTypes = {
-  loggedIn: PropTypes.string,
+  loggedIn: PropTypes.bool.isRequired,
   profile: PropTypes.objectOf(PropTypes.string),
+};
+
+Profile.defaultProps = {
+  profile: {}
 };
 
 export default connect(mapStateToProps)(Profile);
