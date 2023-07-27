@@ -8,7 +8,7 @@ jest.mock('webpack-dev-middleware');
 jest.mock('../webpack.dev.js');
 jest.mock('./api/routes');
 
-describe('Server Unit Tests', async () => {
+describe('Server Unit Tests', () => {
   it('Non Prod test', async () => {
     // eslint-disable-next-line global-require
     require('./server');
