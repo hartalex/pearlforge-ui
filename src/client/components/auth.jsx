@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { connect } from 'react-redux';
 import setTokenAction from '../redux/actions/setToken';
 import setProfileAction from '../redux/actions/setProfile';
 import setErrorBannerAction from '../redux/actions/setErrorBanner';
+import { bool } from 'prop-types';
 
 const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
   const loginFail = (response) => {
@@ -60,7 +62,8 @@ const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
       setToken();
     }
   };
-  const logoutSuccess = (response) => {
+
+  const logoutSuccess = () => {
     // clear the token
     setToken(undefined);
     setProfile(undefined);
@@ -84,23 +87,31 @@ const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
   return retval;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    loggedIn: state.id.loggedIn,
-  };
+const mapStateToProps = (state) => ({
+  loggedIn: state.id.loggedIn,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setToken: (token) => {
+    dispatch(setTokenAction(token));
+  },
+  setProfile: (profile) => {
+    dispatch(setProfileAction(profile));
+  },
+  setErrorBanner: (error) => {
+    dispatch(setErrorBannerAction(error));
+  },
+});
+
+Auth.propTypes = {
+  loggedIn: PropTypes.bool,
+  setToken: PropTypes.func.isRequired,
+  setProfile: PropTypes.func.isRequired,
+  setErrorBanner: PropTypes.func.isRequired,
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setToken: (token) => {
-      dispatch(setTokenAction(token));
-    },
-    setProfile: (profile) => {
-      dispatch(setProfileAction(profile));
-    },
-    setErrorBanner: (error) => {
-      dispatch(setErrorBannerAction(error));
-    },
-  };
+
+Auth.defaultProps = {
+  loggedIn: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);
