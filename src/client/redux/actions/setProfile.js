@@ -1,8 +1,8 @@
-import { SET_PROFILE } from '~/redux/actionTypes'
+import { ACTION_SET_PROFILE } from '../actionTypes';
 
-export default function setProfile (profile) {
+export default function setProfile(profile) {
   return {
-    type: SET_PROFILE,
-    profile
-  }
+    type: ACTION_SET_PROFILE,
+    profile,
+  };
 }

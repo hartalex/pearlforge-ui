@@ -1,11 +1,8 @@
 import express from 'express';
-import auth from '@/auth';
-import health from '@/health';
-import verifyAuthMiddleWare from '@/verifyAuth';
-import {
-  ROUTES_AUTH,
-  ROUTES_HEALTH,
-} from '../constants';
+import auth from './auth';
+import health from './health';
+import verifyAuthMiddleWare from './verifyAuth';
+import { ROUTES_AUTH, ROUTES_HEALTH } from '../constants';
 
 const authenticatedRoutesConfig = {
   middleware: [verifyAuthMiddleWare],
@@ -31,6 +28,8 @@ const createRoutingFromConfig = (config) => {
   return router;
 };
 
-export const authenticatedRoutes = () => (createRoutingFromConfig(authenticatedRoutesConfig));
+export const authenticatedRoutes = () =>
+  createRoutingFromConfig(authenticatedRoutesConfig);
 
-export const unauthenticatedRoutes = () => (createRoutingFromConfig(unauthenticatedRoutesConfig));
+export const unauthenticatedRoutes = () =>
+  createRoutingFromConfig(unauthenticatedRoutesConfig);

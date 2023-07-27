@@ -18,7 +18,8 @@ export const HTTP_STATUS_UNAUTHORIZED = 401;
 export const MESSAGE_HEALTH = 'health';
 export const MESSAGE_UNAUTHORIZED = 'unauthorized';
 
-export const MESSAGE_MISSING_AUTHORIZATION_HEADER = 'Missing Authorization Header';
+export const MESSAGE_MISSING_AUTHORIZATION_HEADER =
+  'Missing Authorization Header';
 export const MESSAGE_USER_IS_NOT_VALID = 'User is not valid';
 export const MESSAGE_AUTH_ERROR = 'Auth Error';
 export const MESSAGE_APP_LISTENING_ON_PORT = 'App listening on port';

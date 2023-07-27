@@ -1,9 +1,6 @@
 import express from 'express';
 import path from 'path';
-import {
-  authenticatedRoutes,
-  unauthenticatedRoutes,
-} from './api/routes';
+import { authenticatedRoutes, unauthenticatedRoutes } from './api/routes';
 import {
   DIR_DIST,
   ENV_PRODUCTION,
@@ -44,6 +41,7 @@ export const server = (env) => {
 
   // Start the server
   app.listen(PORT, () => {
+    // TODO: Use logging library
     console.log(`${MESSAGE_APP_LISTENING_ON_PORT} ${PORT}!\n`);
   });
 };

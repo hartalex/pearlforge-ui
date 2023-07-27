@@ -1,11 +1,13 @@
-import { SET_TOKEN } from '~/redux/actionTypes'
-export default function setToken (state = {}, action) {
+import { ACTION_SET_TOKEN, ACTION_DEFAULT } from '../actionTypes';
+
+export default function setToken(state = {}, action = ACTION_DEFAULT) {
   switch (action.type) {
-    case SET_TOKEN:
-      return Object.assign({}, state, {
-        token: action.token
-      })
+    case ACTION_SET_TOKEN:
+      return {
+        ...state,
+        token: action.token,
+      };
     default:
-      return state
+      return state;
   }
 }
