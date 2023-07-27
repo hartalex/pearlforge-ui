@@ -15,12 +15,12 @@ const unauthenticatedRoutesConfig = {
 
 const createRoutingFromConfig = (config) => {
   const router = express.Router();
-  config?.middleware?.forEach((middleware) => {
+  config.middleware.forEach((middleware) => {
     if (middleware) {
       router.use(middleware);
     }
   });
-  config?.routes?.forEach((route) => {
+  config.routes.forEach((route) => {
     if (route) {
       router.get(route.route, route.function);
     }

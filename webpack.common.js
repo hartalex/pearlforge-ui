@@ -18,14 +18,11 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
+    hashFunction: 'xxhash64',
   },
   module: {
     rules: [
-      {
-        test: /\.js$|\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
+      { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
