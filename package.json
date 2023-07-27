@@ -7,7 +7,8 @@
   "scripts": {
     "start": "npm run build && node build/server.js",
     "test": "jest --coverage",
-    "build": "babel src/server.js --out-dir build && babel src/api --out-dir build/api && webpack --config webpack.prod.js"
+    "build": "babel src/server.js --out-dir build && babel src/api --out-dir build/api && webpack --config webpack.prod.js",
+    "lint": "eslint src/"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,13 @@
     "babel-plugin-root-import": "^6.1.0",
     "clean-webpack-plugin": "1.0.1",
     "css-loader": "2.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.3",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "3.0.1",
     "html-webpack-plugin": "3.2.0",
     "jest": "24.0.0",

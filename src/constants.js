@@ -1,4 +1,3 @@
-
 export const ROUTES_BASE = '/';
 export const ROUTES_API = '/api';
 export const ROUTES_AUTH = '/auth';
@@ -14,7 +13,7 @@ export const FILE_INDEX = 'index.html';
 export const PORT = 3000;
 
 export const HTTP_STATUS_OK = 200;
-export const HTTP_STATUS_401 = 401;
+export const HTTP_STATUS_UNAUTHORIZED = 401;
 
 export const MESSAGE_HEALTH = 'health';
 export const MESSAGE_UNAUTHORIZED = 'unauthorized';
@@ -31,4 +30,3 @@ export const CHAR_SPACE = ' ';
 // INDEXES of type and token found in an Authorization Header
 export const AUTH_TYPE_INDEX = 0;
 export const AUTH_TOKEN_INDEX = 1;
-

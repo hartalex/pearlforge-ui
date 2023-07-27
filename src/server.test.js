@@ -1,18 +1,20 @@
-jest.mock('express')
-jest.mock('path')
-jest.mock('webpack')
-jest.mock('webpack-dev-middleware')
-jest.mock('../webpack.dev.js')
-jest.mock('./api/routes')
-import { server } from './server.js'
-import { ENV_PRODUCTION} from './constants'
+import { server } from './server';
+import { ENV_PRODUCTION } from './constants';
+
+jest.mock('express');
+jest.mock('path');
+jest.mock('webpack');
+jest.mock('webpack-dev-middleware');
+jest.mock('../webpack.dev.js');
+jest.mock('./api/routes');
 
 describe('Server Unit Tests', async () => {
   it('Non Prod test', async () => {
-    require('./server')
-  })
+    // eslint-disable-next-line global-require
+    require('./server');
+  });
 
   it('Prod test', async () => {
-    server(ENV_PRODUCTION)
-  })
-})
+    server(ENV_PRODUCTION);
+  });
+});

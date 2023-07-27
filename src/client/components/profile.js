@@ -7,7 +7,7 @@ const Profile = ({ loggedIn, profile }) => {
     retval = (
       <div>
         <img src={profile.picture} />
-        {profile.given_name} {profile.family_name}
+        {profile.givenName} {profile.familyName}
       </div>
     )
   }
