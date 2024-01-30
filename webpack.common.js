@@ -1,17 +1,14 @@
-[warn] --jsx-bracket-same-line is deprecated.
-[warn] Ignored unknown option --loglevel=error. Did you mean --log-level?
-[warn] Ignored unknown option --stdin.
 // Disabling eslint because webpack config isn't run through babel
 /* eslint-disable */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 /* eslint-disable */
 
 module.exports = {
   entry: './src/client/index.js',
   plugins: [
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Pearl Forge',
       templateContent: "<div id='root'/>",
