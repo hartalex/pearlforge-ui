@@ -6,12 +6,15 @@ export const AuthContext = React.createContext({});
 const AuthContextProvider = ({ children }) => {
   const [profile, setProfile] = useState();
   const [token, setToken] = useState();
-  const value = useMemo({ profile, setProfile, token, setToken });
+  const value = useMemo(() => ({ profile, setProfile, token, setToken }), []);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 AuthContextProvider.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 AuthContextProvider.defaultProps = {
