@@ -1,24 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
-const Profile = ({ loggedIn, profile }) => {
+const Profile = () => {
+  const { profile } = useContext(AuthContext);
   let retval = <div />;
-  if (loggedIn) {
+  if (typeof profile !== 'undefined') {
+    const name = `${profile.givenName} ${profile.familyName}`;
     retval = (
       <div>
-        <img src={profile.picture} />
-        {profile.givenName} {profile.familyName}
+        <img src={profile.picture} alt="profile" />
+        {name}
       </div>
     );
   }
   return retval;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    profile: state.id.profile,
-    loggedIn: state.id.loggedIn,
-  };
-};
+Profile.propTypes = {};
 
-export default connect(mapStateToProps)(Profile);
+Profile.defaultProps = {};
+
+export default Profile;

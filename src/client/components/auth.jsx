@@ -1,29 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { connect } from 'react-redux';
-import setTokenAction from '../redux/actions/setToken';
-import setProfileAction from '../redux/actions/setProfile';
-import setErrorBannerAction from '../redux/actions/setErrorBanner';
+import { ErrorContext } from '../context/ErrorContext';
+import { AuthContext } from '../context/AuthContext';
 
-const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
+const Auth = () => {
+  const { setError } = useContext(ErrorContext);
+  const { profile, setProfile, setToken } = useContext(AuthContext);
+
   const loginFail = (response) => {
     setToken();
     switch (response.error) {
       case 'immediate_failed':
         console.error('Immediate Failed');
-        setErrorBanner('Unauthorized');
+        setError('Unauthorized');
         break;
       case 'access_denied':
-        console.error('Immediate Failed');
-        setErrorBanner('Access Denied');
+        console.error('Access Denied');
+        setError('Access Denied');
         break;
       case 'popup_closed_by_user':
         console.error('Popup close by user');
-        setErrorBanner('Popup Closed Before Authentication');
+        setError('Popup Closed Before Authentication');
         break;
       default:
+        console.error('Login Error');
         console.error(response.error);
-        setErrorBanner('Login Error');
+        setError('Login Error');
         break;
     }
   };
@@ -45,22 +47,24 @@ const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
           break;
         case 401:
           console.error('Unauthorized');
-          setErrorBanner('Unauthorized');
+          setError('Unauthorized');
           setToken();
           break;
         default:
           console.error('API Error');
-          setErrorBanner('API Error');
+          setError('API Error');
           setToken();
           break;
       }
     } catch (error) {
+      console.error('API Error');
       console.error(error);
-      setErrorBanner('API Error');
+      setError('API Error');
       setToken();
     }
   };
-  const logoutSuccess = (response) => {
+
+  const logoutSuccess = () => {
     // clear the token
     setToken(undefined);
     setProfile(undefined);
@@ -74,7 +78,7 @@ const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
       isSignedIn="true"
     />
   );
-  if (loggedIn) {
+  if (typeof profile !== 'undefined') {
     retval = (
       <div>
         <GoogleLogout buttonText="Logout" onLogoutSuccess={logoutSuccess} />
@@ -84,23 +88,8 @@ const Auth = ({ loggedIn, setToken, setProfile, setErrorBanner }) => {
   return retval;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    loggedIn: state.id.loggedIn,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setToken: (token) => {
-      dispatch(setTokenAction(token));
-    },
-    setProfile: (profile) => {
-      dispatch(setProfileAction(profile));
-    },
-    setErrorBanner: (error) => {
-      dispatch(setErrorBannerAction(error));
-    },
-  };
-};
+Auth.propTypes = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+Auth.defaultProps = {};
+
+export default Auth;

@@ -1,29 +1,25 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import setErrorBannerAction from '../redux/actions/setErrorBanner';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { ErrorContext } from '../context/ErrorContext';
 
-const ErrorBanner = ({ error, setErrorBanner, seconds = 10 }) => {
+const ErrorBanner = ({ seconds = 10 }) => {
+  const { error, setError } = useContext(ErrorContext);
   let retval = <div />;
   if (error) {
     retval = <div>{error}</div>;
     setTimeout(() => {
-      setErrorBanner();
+      setError();
     }, seconds * 1000);
   }
   return retval;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    error: state.error.error,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setErrorBanner: (error) => {
-      dispatch(setErrorBannerAction(error));
-    },
-  };
+ErrorBanner.propTypes = {
+  seconds: PropTypes.number,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorBanner);
+ErrorBanner.defaultProps = {
+  seconds: 10,
+};
+
+export default ErrorBanner;
