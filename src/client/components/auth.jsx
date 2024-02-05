@@ -15,7 +15,7 @@ const Auth = () => {
         setError('Unauthorized');
         break;
       case 'access_denied':
-        console.error('Immediate Failed');
+        console.error('Access Denied');
         setError('Access Denied');
         break;
       case 'popup_closed_by_user':
@@ -23,6 +23,7 @@ const Auth = () => {
         setError('Popup Closed Before Authentication');
         break;
       default:
+        console.error('Login Error');
         console.error(response.error);
         setError('Login Error');
         break;
@@ -56,6 +57,7 @@ const Auth = () => {
           break;
       }
     } catch (error) {
+      console.error('API Error');
       console.error(error);
       setError('API Error');
       setToken();
